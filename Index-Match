@@ -1,0 +1,29 @@
+MATCH
+RETURNS - relative index of SEARCH_KEY in 1D_LOOKUP_RANGE
+
+MATCH_TYPE
+1 - default - assumes range in asc order, returns largest value <= to SEARCH_KEY
+0 - exact match
+-1 - assumes range in desc order, returns smallest value >= to SEARCH_KEY
+
+EXAMPLE
+=match(SEARCH_KEY, 1D_LOOKUP_RANGE, MATCH_TYPE)
+=match("BMW", A:A, 0)
+
+-----------------------------------------------------------
+
+INDEX
+RETURNS - content of a cell in RANGE, specified by row and column offset (PARAMS 2 and 3, respectively)
+
+EXAMPLE
+=index(RANGE, ROW_INDEX, COL_INDEX)
+=index(A1:C20, 4, 3)
+
+-----------------------------------------------------------
+
+INDEX-MATCH
+RETURNS - content of a cell in RANGE, specified by index of SEARCH_KEY in 1D_LOOKUP_RANGE (for row and/or col)
+
+EXAMPLE
+=index(RANGE, match(SEARCH_KEY, 1D_LOOKUP_RANGE_ROW_HEADERS, MATCH_TYPE), match(SEARCH_KEY, 1D_LOOKUP_RANGE_COLUMN_HEADERS, MATCH_TYPE))
+=index('Notes'!A:Z, match("BMW", 'Notes'!A:A, 0), match("2024", 'Notes'!1:1, 0))
